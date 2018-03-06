@@ -46,6 +46,7 @@ namespace ProvisioningDeviceClientX509
 
                 if (result.Status != ProvisioningRegistrationStatusType.Assigned) return;
 
+                // Create a new instance of DeviceClient to connect to IoT Hub
                 IAuthenticationMethod auth = new DeviceAuthenticationWithX509Certificate(result.DeviceId, certificate);
                 using (DeviceClient iotClient = DeviceClient.Create(result.AssignedHub, auth))
                 {
