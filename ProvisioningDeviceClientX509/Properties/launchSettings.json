@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProvisioningDeviceClientX509": {
+      "commandName": "Project",
+      "commandLineArgs": "DPSScopeID"
+    }
+  }
+}
