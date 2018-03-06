@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendCloudToDevice", "SendCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddTagsAndQuery", "AddTagsAndQuery\AddTagsAndQuery.csproj", "{932368B1-A085-49E3-BFE5-A67C6DB5219E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProvisioningDeviceClientX509", "ProvisioningDeviceClientX509\ProvisioningDeviceClientX509.csproj", "{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,12 +41,16 @@ Global
 		{932368B1-A085-49E3-BFE5-A67C6DB5219E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932368B1-A085-49E3-BFE5-A67C6DB5219E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932368B1-A085-49E3-BFE5-A67C6DB5219E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 		SolutionGuid = {62084AE1-D212-4704-B221-8A10B89EC4AA}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 	EndGlobalSection
 EndGlobal
