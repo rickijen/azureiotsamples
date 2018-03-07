@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddTagsAndQuery", "AddTagsA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProvisioningDeviceClientX509", "ProvisioningDeviceClientX509\ProvisioningDeviceClientX509.csproj", "{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadFileUploadNotification", "ReadFileUploadNotification\ReadFileUploadNotification.csproj", "{25E6528C-1F9A-4EB8-ADA5-DB940E94E0FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,12 +47,16 @@ Global
 		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C4A3B42-4E28-4CEA-846D-6E5A92B1082A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E6528C-1F9A-4EB8-ADA5-DB940E94E0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E6528C-1F9A-4EB8-ADA5-DB940E94E0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E6528C-1F9A-4EB8-ADA5-DB940E94E0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E6528C-1F9A-4EB8-ADA5-DB940E94E0FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {62084AE1-D212-4704-B221-8A10B89EC4AA}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
+		SolutionGuid = {62084AE1-D212-4704-B221-8A10B89EC4AA}
 	EndGlobalSection
 EndGlobal

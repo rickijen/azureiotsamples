@@ -12,8 +12,9 @@ namespace SimulatedDevice
     class Program
     {
         static DeviceClient deviceClient;
-        static string iotHubUri = "rmtmonitor6d38c.azure-devices.net";
-        static string deviceKey = "A1vDudLHLfLQfmZ6s7RyCfNEMuyGDEENxEIfTW1To+I=";
+        static string iotHubUri;
+        static string deviceKey;
+        static string deviceID;
 
         private static async void ReceiveC2dAsync()
         {
@@ -30,7 +31,7 @@ namespace SimulatedDevice
                 await deviceClient.CompleteAsync(receivedMessage);
             }
         }
-        private static async void SendDeviceToCloudMessagesAsync()
+        private static async void SendDeviceToCloudMessagesAsync(string deviceID)
         {
             double minTemperature = 20;
             double minHumidity = 60;
@@ -45,7 +46,7 @@ namespace SimulatedDevice
                 var telemetryDataPoint = new
                 {
                     messageId = messageId++,
-                    deviceId = "CoolSculptingDevice-000",
+                    deviceId = deviceID,
                     temperature = currentTemperature,
                     humidity = currentHumidity
                 };
@@ -77,12 +78,23 @@ namespace SimulatedDevice
 
         static void Main(string[] args)
         {
+            if (string.IsNullOrWhiteSpace(iotHubUri) && (args.Length < 3))
+            {
+                Console.WriteLine("SimulatedDevice <iotHubUri> <deviceKey> <deviceId>");
+                return;
+            }
+
+            iotHubUri = args[0];
+            deviceKey = args[1];
+            deviceID = args[2];
+
             Console.WriteLine("Simulated device\n");
-            deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey("CoolSculptingDevice-000", deviceKey), TransportType.Mqtt);
-            deviceClient.ProductInfo = "XXXXXXXXX HappyPath_Simulated-CSharp";
-            SendDeviceToCloudMessagesAsync();
+            deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(deviceID, deviceKey), TransportType.Mqtt);
+            deviceClient.ProductInfo = "XXXXXXXXX Product Info XXXXXXXXXX";
+            SendDeviceToCloudMessagesAsync(deviceID);
             ReceiveC2dAsync();
-            //SendToBlobAsync();
+            // file upload
+            SendToBlobAsync();
             Console.ReadLine();
         }
     }
