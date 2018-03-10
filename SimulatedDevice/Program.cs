@@ -52,7 +52,11 @@ namespace SimulatedDevice
                 };
                 var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
                 var message = new Message(Encoding.ASCII.GetBytes(messageString));
-                message.Properties.Add("XXXXXXXX temperatureAlert", (currentTemperature > 30) ? "true" : "false");
+
+                // Route messages to a specific endpoint based on query string defined.
+                // E.g. use query string RICK='JEN' and route messages to a specific storage container.
+                message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
+                message.Properties.Add("RICK", "JEN");
 
                 await deviceClient.SendEventAsync(message);
                 Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
@@ -90,7 +94,7 @@ namespace SimulatedDevice
 
             Console.WriteLine("Simulated device\n");
             deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(deviceID, deviceKey), TransportType.Mqtt);
-            deviceClient.ProductInfo = "XXXXXXXXX Product Info XXXXXXXXXX";
+            deviceClient.ProductInfo = "Product Info";
             SendDeviceToCloudMessagesAsync(deviceID);
             ReceiveC2dAsync();
             // file upload

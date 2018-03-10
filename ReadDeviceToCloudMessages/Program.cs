@@ -10,7 +10,7 @@ namespace ReadDeviceToCloudMessages
 {
     class Program
     {
-        static string connectionString = "HostName=rmtmonitor6d38c.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=mvdtgRmtWv5SmHGZoXjL/U4w9cNKZZ8389XeGhcXLd8=";
+        static string connectionString;
         static string iotHubD2cEndpoint = "messages/events";
         static EventHubClient eventHubClient;
 
@@ -24,12 +24,22 @@ namespace ReadDeviceToCloudMessages
                 if (eventData == null) continue;
 
                 string data = Encoding.UTF8.GetString(eventData.GetBytes());
-                Console.WriteLine("Message received. Partition: {0} Data: '{1}'", partition, data);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Partition: {0} Data: '{1}'", partition, data);
+                Console.ResetColor();
+                
             }
         }
 
         static void Main(string[] args)
         {
+            if (string.IsNullOrWhiteSpace(connectionString) && (args.Length < 1))
+            {
+                Console.WriteLine("ReadDeviceToCloudMessages <connectionString>");
+                return;
+            }
+
+            connectionString = args[0];
             Console.WriteLine("Receive messages. Ctrl-C to exit.\n");
             eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, iotHubD2cEndpoint);
 
