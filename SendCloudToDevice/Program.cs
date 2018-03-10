@@ -11,13 +11,14 @@ namespace SendCloudToDevice
     class Program
     {
         static ServiceClient serviceClient;
-        static string connectionString = "HostName=rmtmonitor6d38c.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=mvdtgRmtWv5SmHGZoXjL/U4w9cNKZZ8389XeGhcXLd8=";
+        static string connectionString;
+        static string deviceId;
 
-        private async static Task SendCloudToDeviceMessageAsync()
+        private async static Task SendCloudToDeviceMessageAsync(string deviceId)
         {
-            var commandMessage = new Message(Encoding.ASCII.GetBytes("Cloud to device message."));
+            var commandMessage = new Message(Encoding.ASCII.GetBytes("XXXXXXXXXX Cloud to device message XXXXXXXXXX"));
             commandMessage.Ack = DeliveryAcknowledgement.Full;
-            await serviceClient.SendAsync("CoolSculptingDevice-000", commandMessage);
+            await serviceClient.SendAsync(deviceId, commandMessage);
         }
 
         private async static void ReceiveFeedbackAsync()
@@ -40,6 +41,15 @@ namespace SendCloudToDevice
 
         static void Main(string[] args)
         {
+            if (string.IsNullOrWhiteSpace(connectionString) && (args.Length < 2))
+            {
+                Console.WriteLine("SendCloudToDevice <connectionString> <deviceId>");
+                return;
+            }
+
+            connectionString = args[0];
+            deviceId = args[1];
+
             Console.WriteLine("Send Cloud-to-Device message\n");
             serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
             ReceiveFeedbackAsync();
@@ -47,7 +57,7 @@ namespace SendCloudToDevice
             Console.WriteLine("Press any key to send a C2D message.");
             
             Console.ReadLine();
-            SendCloudToDeviceMessageAsync().Wait();
+            SendCloudToDeviceMessageAsync(deviceId).Wait();
             Console.ReadLine();
         }
     }

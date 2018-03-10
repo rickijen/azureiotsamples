@@ -24,7 +24,7 @@ namespace SimulatedDevice
                 Message receivedMessage = await deviceClient.ReceiveAsync();
                 if (receivedMessage == null) continue;
 
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Received message: {0}", Encoding.ASCII.GetString(receivedMessage.GetBytes()));
                 Console.ResetColor();
 
@@ -55,6 +55,8 @@ namespace SimulatedDevice
 
                 // Route messages to a specific endpoint based on query string defined.
                 // E.g. use query string RICK='JEN' and route messages to a specific storage container.
+                // https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-query-language#device-to-cloud-message-routes-query-expressions
+
                 message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
                 message.Properties.Add("RICK", "JEN");
 
@@ -95,10 +97,14 @@ namespace SimulatedDevice
             Console.WriteLine("Simulated device\n");
             deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(deviceID, deviceKey), TransportType.Mqtt);
             deviceClient.ProductInfo = "Product Info";
+            
+            // Send D2C Messages
             SendDeviceToCloudMessagesAsync(deviceID);
+            // Receive C2D Messages 
             ReceiveC2dAsync();
-            // file upload
+            // File upload
             SendToBlobAsync();
+
             Console.ReadLine();
         }
     }
