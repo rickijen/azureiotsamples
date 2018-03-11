@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Devices;
 using Microsoft.Azure.Devices.Common.Exceptions;
@@ -11,11 +8,11 @@ namespace CreateDeviceIdentity
     class Program
     {
         static RegistryManager registryManager;
-        static string connectionString = "HostName=rmtmonitor6d38c.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=mvdtgRmtWv5SmHGZoXjL/U4w9cNKZZ8389XeGhcXLd8=";
+        static string connectionString;
+        static string deviceId;
 
-        private static async Task AddDeviceAsync()
+        private static async Task AddDeviceAsync(string deviceId)
         {
-            string deviceId = "CoolSculptingDevice-002";
             Device device;
             try
             {
@@ -30,8 +27,17 @@ namespace CreateDeviceIdentity
 
         static void Main(string[] args)
         {
+            if (string.IsNullOrWhiteSpace(connectionString) && (args.Length < 2))
+            {
+                Console.WriteLine("CreateDeviceIdentity <connectionString> <deviceId>");
+                return;
+            }
+
+            connectionString = args[0];
+            deviceId = args[1];
+
             registryManager = RegistryManager.CreateFromConnectionString(connectionString);
-            AddDeviceAsync().Wait();
+            AddDeviceAsync(deviceId).Wait();
             Console.ReadLine();
         }
     }

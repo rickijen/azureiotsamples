@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Devices;
 
@@ -12,7 +10,7 @@ namespace AddTagsAndQuery
         static RegistryManager registryManager;
         private static string connectionString;
         private static string deviceId;
-        //static string connectionString = "HostName=rmtmonitor6d38c.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=mvdtgRmtWv5SmHGZoXjL/U4w9cNKZZ8389XeGhcXLd8=";
+        
         public static async Task AddTagsAndQuery(string deviceId)
         {
             var twin = await registryManager.GetTwinAsync(deviceId);
