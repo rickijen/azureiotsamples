@@ -1,1 +1,1 @@
-# Azure IoT Sample code using C# SDK.
+# Azure IoT Device and Service Sample Code Using C# SDK.
