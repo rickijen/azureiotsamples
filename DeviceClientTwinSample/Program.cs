@@ -67,6 +67,15 @@ namespace DeviceClientTwinSample
                 Console.WriteLine("Sending app start time as reported property");
                 TwinCollection reportedProperties = new TwinCollection();
                 reportedProperties["DateTimeLastAppLaunch"] = DateTime.Now;
+                
+                // To remove a property, simply set it to null.
+                //reportedProperties["dddddddddd"] = null;
+                //TwinCollection connectivity = new TwinCollection();
+                //connectivity["type"] = "cellular";
+                //reportedProperties["connectivity"] = connectivity;
+                //TwinCollection firmware = new TwinCollection();
+                //firmware["version"] = "1.0.9";
+                //reportedProperties["firmware"] = firmware;
 
                 Client.UpdateReportedPropertiesAsync(reportedProperties);
             }
