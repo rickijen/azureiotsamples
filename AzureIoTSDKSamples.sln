@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceClientMethodSample", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceClientFileUploadSample", "DeviceClientFileUploadSample\DeviceClientFileUploadSample.csproj", "{A7914408-83A1-417A-A5FA-11D682FB39F7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProvisioningDeviceClientTpm", "..\azure-iot-sdk-csharp\provisioning\device\samples\ProvisioningDeviceClientTpm\ProvisioningDeviceClientTpm.csproj", "{D718BE01-C6F7-4929-BF44-B1666F622BFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurityProviderTpmSimulator", "..\azure-iot-sdk-csharp\security\tpm\samples\SecurityProviderTpmSimulator\SecurityProviderTpmSimulator.csproj", "{531FFCD9-BC35-4BA0-BBEF-A66A6B5DBF6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,12 +73,20 @@ Global
 		{A7914408-83A1-417A-A5FA-11D682FB39F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7914408-83A1-417A-A5FA-11D682FB39F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7914408-83A1-417A-A5FA-11D682FB39F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D718BE01-C6F7-4929-BF44-B1666F622BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D718BE01-C6F7-4929-BF44-B1666F622BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D718BE01-C6F7-4929-BF44-B1666F622BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D718BE01-C6F7-4929-BF44-B1666F622BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531FFCD9-BC35-4BA0-BBEF-A66A6B5DBF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531FFCD9-BC35-4BA0-BBEF-A66A6B5DBF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531FFCD9-BC35-4BA0-BBEF-A66A6B5DBF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531FFCD9-BC35-4BA0-BBEF-A66A6B5DBF6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 		SolutionGuid = {62084AE1-D212-4704-B221-8A10B89EC4AA}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 	EndGlobalSection
 EndGlobal
