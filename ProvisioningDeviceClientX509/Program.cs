@@ -25,9 +25,9 @@ namespace ProvisioningDeviceClientX509
 
         private const string GlobalDeviceEndpoint = "global.azure-devices-provisioning.net";
         private static string s_idScope;
-        private static string s_certificateFileName = "certificate.pfx";
+        private static string s_certificateFileName = "C:\\Users\\rijen\\Source\\Repos\\azureiotsamples\\ProvisioningDeviceClientX509\\certificate.pfx";
 
-        public static async Task RunSample(X509Certificate2 certificate)
+        static async Task RunSample(X509Certificate2 certificate)
         {
             using (var security = new SecurityProviderX509Certificate(certificate))
             // using (var transport = new ProvisioningTransportHandlerHttp())
@@ -100,7 +100,35 @@ namespace ProvisioningDeviceClientX509
                 Console.WriteLine($"Using certificate {certificate.Thumbprint} {certificate.Subject}");
             }
 
-            RunSample(certificate).GetAwaiter().GetResult();
+            try
+            {
+                RunSample(certificate).GetAwaiter().GetResult();
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception exception in ex.InnerExceptions)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error in sample: {0}", exception);
+                }
+            }
+            /*
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Error in sample: {0}", ex.Message);
+            }
+            */
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Error: {0}", ex.Message);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Error: {0}", ex.InnerException.Message);
+                }
+            }
+
         }
 
         private static string ReadCertificatePassword()
